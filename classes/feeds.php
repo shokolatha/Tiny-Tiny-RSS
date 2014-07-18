@@ -551,7 +551,7 @@ class Feeds extends Handler_Protected {
 					$reply['content'] .= "<div class=\"cdm $hlc_suffix $expanded_class $class\"
 						id=\"RROW-$id\" orig-feed-id='$feed_id' $mouseover_attrs>";
 
-					$reply['content'] .= "<div class=\"cdmHeader\">";
+					$reply['content'] .= "<div class=\"cdmHeader\" dir=\"auto\">";
 					$reply['content'] .= "<div style=\"vertical-align : middle\">";
 
 					$reply['content'] .= "<input dojoType=\"dijit.form.CheckBox\"
@@ -633,7 +633,7 @@ class Feeds extends Handler_Protected {
 
 					if (!$line['lang']) $line['lang'] = 'en';
 
-					$reply['content'] .= "<div class=\"cdmContentInner\" lang=\"".$line['lang']."\">";
+					$reply['content'] .= "<div class=\"cdmContentInner\" lang=\"".$line['lang']."\" dir=\"auto\">";
 
 			if ($line["orig_feed_id"]) {
 
