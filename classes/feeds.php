@@ -554,8 +554,13 @@ class Feeds extends Handler_Protected {
 
 					$expanded_class = $expand_cdm ? "expanded" : "expandable";
 
+					$containimg= preg_match('/<img [^>]*>/',$line["content"], $imgresult);
+					$thumbnail = substr_replace($imgresult[0], "style=\"display: block;max-width: 125px;max-height: 100px;width: auto;height: auto;position: absolute;pointer-events: none;\" ", 5, 0);
+					if ($containimg) {
+					$reply['content'] .=$thumbnail;
+					}
 					$reply['content'] .= "<div class=\"cdm $hlc_suffix $expanded_class $class\"
-						id=\"RROW-$id\" orig-feed-id='$feed_id' $mouseover_attrs>";
+						id=\"RROW-$id\" style=\"margin-left: 125px\" dir=\"auto\" orig-feed-id='$feed_id' $mouseover_attrs>";
 
 					$reply['content'] .= "<div class=\"cdmHeader\">";
 					$reply['content'] .= "<div style=\"vertical-align : middle\">";
@@ -583,7 +588,7 @@ class Feeds extends Handler_Protected {
 						target=\"_blank\" href=\"".
 						htmlspecialchars($line["link"])."\">".
 						$line["title"] .
-						"</a> <span class=\"author\">$entry_author</span>";
+						"</a> <br> <br> <span class=\"author\">$entry_author</span>";
 
 					$reply['content'] .= $labels_str;
 
@@ -596,7 +601,7 @@ class Feeds extends Handler_Protected {
 					else
 						$excerpt_hidden = "style=\"display : none\"";
 
-					$reply['content'] .= "<span $excerpt_hidden id=\"CEXC-$id\" class=\"cdmExcerpt\">" . $content_preview . "</span>";
+					$reply['content'] .= "<span $excerpt_hidden id=\"CEXC-$id\" class=\"cdmExcerpt\" style=\"white-space: normal;position: absolute;\">" . $content_preview . "</span>";
 
 					$reply['content'] .= "</span>";
 
